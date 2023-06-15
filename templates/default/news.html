@@ -1,0 +1,19 @@
+{{define "default/news.html"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>接收函数</h2>{{$banner := .title}}
+    <h2>标题：{{$banner}}</h2>
+    <h2>名称：{{.news.Name}}</h2>
+    <h2>热点链接：{{.news.Address}}</h2>
+</body>
+
+</html>
+{{end}}

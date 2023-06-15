@@ -1,0 +1,26 @@
+{{define "default/index.html"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>首页</h2>
+    <h2>条件判断</h2>
+    {{if gt .score 60}}
+        优秀
+    {{else if gt .score 40}}
+        及格
+    {{else}}
+        不及格
+    {{end}}
+    <h2>循环</h2>
+    {{range .content}}
+        <h2>名称：{{.Name}}</h2>
+        <h2>热点链接：{{.Address}}</h2>
+    {{end}}
+</body>
+</html>
+{{end}}
