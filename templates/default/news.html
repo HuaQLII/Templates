@@ -9,10 +9,21 @@
 </head>
 
 <body>
+    {{template "public/header.html" .}}
     <h2>接收函数</h2>{{$banner := .title}}
     <h2>标题：{{$banner}}</h2>
     <h2>名称：{{.news.Name}}</h2>
     <h2>热点链接：{{.news.Address}}</h2>
+    <h2>爆发时间戳：{{.time}}</h2>
+
+
+    <h1>-----------------------------------------</h1>
+
+    {{ $formattedTime := UnixToTime .time }}
+    Time: {{ $formattedTime }}
+    {{ $formattedDate := UnixToDate .time }}
+    Date: {{ $formattedDate}}
+    {{template "public/foot.html" .}}
 </body>
 
 </html>

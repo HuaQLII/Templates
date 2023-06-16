@@ -1,49 +1,28 @@
 package webapp
 
 import (
+	"html/template"
+
 	"github.com/gin-gonic/gin"
 )
 
-type WebApp struct{
-	JSCRC, CSSCRC string
-	WebPort       string
-	Nats_WSPort   string
-}
-type Article struct {
-	Name    string `json:"name"`
-	Address string `json:"address"`
+type WebApp struct {
 }
 
-func (this *WebApp) InitRouters(r *gin.Engine) {
-	G := r.Group("/", gin.BasicAuth(gin.Accounts{
+func InitRouters(router *gin.Engine, app *WebApp) {
+	//自定义模板函数
+	router.SetFuncMap(template.FuncMap{
+		"UnixToTime": app.UnixToTime,
+		"UnixToDate": app.UnixToDate,
+
+	})
+	
+
+	
+	G := router.Group("/", gin.BasicAuth(gin.Accounts{
 		"lauson": "lauson",
 	}))
-	_ = G
-	G.GET("/", this.Index)
-	r.Run(":8080")
-	// r.GET("/news", func(c *gin.Context) {
-	// 	news := &Article{
-	// 		Name:    "新闻",
-	// 		Address: "http://www.baidu.com",
-	// 	}
-
-	// 	c.HTML(200, "default/news.html", gin.H{
-	// 		"title": "新闻",
-	// 		"news":  news,
-	// 	})
-	// })
-
-	// //后台
-
-	// r.GET("/admin", func(c *gin.Context) {
-	// 	c.HTML(200, "admin/index.html", gin.H{
-	// 		"title": "后台首页",
-	// 	})
-	// })
-	// r.GET("/admin/news", func(c *gin.Context) {
-	// 	c.HTML(200, "admin/news.html", gin.H{
-	// 		"title": "后台新闻",
-	// 	})
-	// })
-
+	G.GET("/", app.Index)
+	G.GET("/news", app.News)
+	router.Run(":8080")
 }

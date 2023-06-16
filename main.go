@@ -8,8 +8,10 @@ import (
 )
 
 func main() {
-	r := gin.Default()
 	db.InitDB()
-	app := &webapp.WebApp{} // 创建 WebApp 的实例
-	app.InitRouters(r) // 调用 InitRouters 方法
+	router := gin.Default()
+	router.LoadHTMLGlob("templates/**/*")
+	router.Static("/static", "./static")
+	app := &webapp.WebApp{}
+	webapp.InitRouters(router, app)
 }
