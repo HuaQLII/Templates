@@ -10,8 +10,7 @@ import (
 func main() {
 	db.InitDB()
 	router := gin.Default()
-	router.LoadHTMLGlob("templates/**/*")
-	router.Static("/static", "./static")
+	//自定义模板函数
 	app := &webapp.WebApp{}
 	webapp.InitRouters(router, app)
 }

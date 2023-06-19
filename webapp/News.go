@@ -8,7 +8,7 @@ import (
 
 func (app *WebApp) News(c *gin.Context) {
 	data := controller.GetNewsData()
-	c.HTML(200, "default/news.html", data)
+	c.HTML(200, "news.html", data)
 }
 
 // r.GET("/news", func(c *gin.Context) {

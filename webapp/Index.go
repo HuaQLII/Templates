@@ -8,5 +8,5 @@ import (
 
 func (app *WebApp) Index(c *gin.Context) {
 	data := controller.GetIndexData()
-	c.HTML(200, "default/index.html", data)
+	c.HTML(200, "index.html", data)
 }
